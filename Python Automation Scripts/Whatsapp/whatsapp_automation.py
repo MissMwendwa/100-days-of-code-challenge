@@ -25,7 +25,7 @@ class Whatsapp:
             print('Exceprtion(nav_green_dot): ', e)
 
 
-# calling the function to perform the necessary activities
+#calling the function to perform the necessary activities
 wa_bot = Whatsapp(speed = .5, click_speed=.4)
 
 wa_bot.nav_green_dot()

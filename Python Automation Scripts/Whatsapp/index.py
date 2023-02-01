@@ -56,11 +56,38 @@ def process_response(message):
         else:
             return "Keep it up"
 
-    
+ #checking for new message
+def check_new_message():
+    pg.moveTo(pos_x +50, pos_y +35, duration=.5)
 
 
-processed_message = process_response(get_message())
-post(processed_message)
+    while True:
+        #continuously checks for the green dot
+        try:
+            position = pg.locateOnScreen("Whatsapp/greendot.png", confidence=.6)
+
+            if position is None:
+                pg.moveTo(position)
+                pg.moveRel(-100, 0)
+                pg.click()
+                sleep(.5)
+
+        except(Exception):
+            print('No new messages Found!')
+
+        if pg.pixelMatchesColor(int(pos_x +50), int(pos_y+35), (255,255,255), tolerance=10):
+            print('Color is white')
+            processed_message = process_response(get_message())
+            post(processed_message)
+        else:
+            print('No new Mesaages...')
+
+        sleep(5)
+
+
+
+
+
 
 
 
